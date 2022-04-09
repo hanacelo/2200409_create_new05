@@ -78,7 +78,7 @@ class MakesController extends Controller
         $makes->user_id = Auth::id();//ここでログインしているユーザidを登録しています
         $makes->save();
         
-        return redirect('/');
+        return redirect('/ichiran');
         
     }
 
@@ -88,9 +88,11 @@ class MakesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        //ichiranページに移行
+        $makes = Make::all();
+        return view("/ichiran" ,compact('makes') );
     }
 
     /**
@@ -140,4 +142,16 @@ class MakesController extends Controller
         
         return redirect('/');
     }
+    
+    
+    //一覧表示
+    public function ichiran($id)
+    {
+        // URLの生成
+    $url = route('ichiran');
+    
+    // リダイレクトの生成
+    return redirect()->route('ichiran');
+    }
+        
 }

@@ -4,7 +4,7 @@
     <!-- Bootstrapの定形コード… -->
     <div class="card-body">
         <div class="card-title">
-            投稿フォーム
+            キャンペーンを作りましょう
         </div>
         <!-- バリデーションエラーの表示に使用-->
     	@include('common.errors')
@@ -15,14 +15,14 @@
             {{ csrf_field() }}
             <!-- 投稿のタイトル -->
             <div class="form-group">
-                投稿のタイトル
+                キャンペーンのタイトル
                 <div class="col-sm-6">
                     <input type="text" name="make_title" class="form-control">
                 </div>
             </div>
             <!-- 投稿の本文 -->
             <div class="form-group">
-                投稿の本文
+                キャンペーンへの思いや、エピソード
                 <div class="col-sm-6">
                     <input type="text" name="make_desc" class="form-control">
                 </div>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
                     <button type="submit" class="btn btn-primary">
-                        Save
+                        キャンペーンを作成する
                     </button>
                 </div>
             </div>
@@ -39,52 +39,7 @@
         @endif
     </div>
     
-    <!-- 全ての投稿リスト -->
-    @if (count($makes) > 0)
-            <div class="card-body">
-                <div class="card-body">
-                    <table class="table table-striped task-table">
-                        <!-- テーブルヘッダ -->
-                        <thead>
-                            <th>投稿一覧</th>
-                            <th>&nbsp;</th>
-                        </thead>
-                        <!-- テーブル本体 -->
-                        <tbody>
-                            @foreach ($makes as $make)
-                                <tr>
-                                    <!-- 投稿タイトル -->
-                                    <td class="table-text">
-                                        <div>{{ $make->make_title }}</div>
-                                    </td>
-                                     <!-- 投稿詳細 -->
-                                    <td class="table-text">
-                                        <div>{{ $make->make_desc }}</div>
-                                    </td>
-    				                <!-- 投稿者名の表示 -->
-                                    <td class="table-text">
-                                       <div>{{ $make->user->name }}</div>
-                                    </td>
-     				                <!-- お気に入りボタン -->
-     				                <td class="table-text">
-                                    @if(Auth::check())
-                                    	@if(Auth::id() != $make->user_id && $make->favo_user()->where('user_id',Auth::id())->exists() !== true)
-                                    	<form action="{{ url('make/'.$make->id) }}" method="POST">
-                                    		{{ csrf_field() }}
-                                    		<button type="submit" class="btn btn-danger">
-                                    		お気に入り
-                                    		</button>
-                                    	</form>
-                                    	@endif
-                                    @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>		
-        @endif
+    
     
     <!-- お気に入り一覧 -->
     @if( Auth::check() )
@@ -94,7 +49,7 @@
                     <table class="table table-striped task-table">
                         <!-- テーブルヘッダ -->
                         <thead>
-                            <th>お気に入り一覧</th>
+                            <th>賛同一覧</th>
                             <th>&nbsp;</th>
                         </thead>
                         <!-- テーブル本体 -->

@@ -28,6 +28,13 @@ Route::get('/', [MakesController::class, 'index']);
 //登録
 Route::post('makes', [MakesController::class, 'store']);
 
+//Makesページからichiranページに移行
+Route::get('/makes', [App\Http\Controllers\MakesController::class, 'show']);
+
+//ichiranページの表示
+Route::get('/ichiran', [MakesController::class, 'show'])->name('ichiran');
+
+
 //お気に入り処理
 Route::post('make/{make_id}', [MakesController::class, 'favo']);
 
