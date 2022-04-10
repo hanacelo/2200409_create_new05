@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MakesController;//追記
+use App\Http\Controllers\MakesController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,18 @@ Route::get('/makes', [App\Http\Controllers\MakesController::class, 'show']);
 Route::get('/ichiran', [MakesController::class, 'show'])->name('ichiran');
 
 
+//なぜか２つともないと動かないです・・・
 //お気に入り処理
 Route::post('make/{make_id}', [MakesController::class, 'favo']);
+//favoの登録
+Route::post('mypage/{make_id}', [MakesController::class, 'favo']);
+
+//myページの表示
+Route::get('/mypage', [MypageController::class, 'index']);
+
+
+
+
+
+
 

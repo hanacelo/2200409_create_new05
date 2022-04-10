@@ -8,7 +8,7 @@
         </div>
         <!-- バリデーションエラーの表示に使用-->
     	@include('common.errors')
-        <!-- バリデーションエラーの表示に使用-->
+
         <!-- 投稿フォーム -->
         @if( Auth::check() )
         <form action="{{ url('makes') }}" method="POST" class="form-horizontal">
@@ -39,44 +39,7 @@
         @endif
     </div>
     
-    
-    
-    <!-- お気に入り一覧 -->
-    @if( Auth::check() )
-    	@if (count($favo_posts) > 0)
-            <div class="card-body">
-                <div class="card-body">
-                    <table class="table table-striped task-table">
-                        <!-- テーブルヘッダ -->
-                        <thead>
-                            <th>賛同一覧</th>
-                            <th>&nbsp;</th>
-                        </thead>
-                        <!-- テーブル本体 -->
-                        <tbody>
-                            @foreach ($favo_posts as $favo_post)
-                                <tr>
-                                    <!-- 投稿タイトル -->
-                                    <td class="table-text">
-                                        <div>{{ $favo_post->make_title }}</div>
-                                    </td>
-                                     <!-- 投稿詳細 -->
-                                    <td class="table-text">
-                                        <div>{{ $favo_post->make_desc }}</div>
-                                    </td>
-                                    <!-- 投稿者名の表示 -->
-                                    <td class="table-text">
-                                        <div>{{ $favo_post->user->name }}</div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>		
-        @endif 
 
-    @endif
     
     
 @endsection

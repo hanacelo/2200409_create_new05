@@ -45,4 +45,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>		
+            </div>	
+            
+            <td class="table-text">
+                <a href="{{ url('/') }}" type="submit" class="btn btn-danger">さらにキャンペーンを作る</a>
+            </td>
