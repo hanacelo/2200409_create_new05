@@ -46,6 +46,8 @@ Route::post('mypage/{make_id}', [MakesController::class, 'favo']);
 Route::get('/mypage', [MypageController::class, 'index']);
 
 
+//詳細ボタン設定
+Route::get('/shousai/{id}', [MakesController::class, 'shousai'])->name('shousai');
 
 
 

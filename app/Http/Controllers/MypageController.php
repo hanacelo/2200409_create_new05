@@ -112,4 +112,6 @@ class MypageController extends Controller
         return redirect('/');
     }
     
+    
+    
 }

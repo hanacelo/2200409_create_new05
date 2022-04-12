@@ -27,6 +27,8 @@
                                     <td class="table-text">
                                        <div>{{ $make->user->name }}</div>
                                     </td>
+                                    <!-- 詳細ボタン -->
+                                    <td><a href="{{ route('shousai', ['id'=>$make->id]) }}" class="btn btn-primary">詳細</a></td>
      				                <!-- お気に入りボタン -->
      				                <td class="table-text">
                                     @if(Auth::check())

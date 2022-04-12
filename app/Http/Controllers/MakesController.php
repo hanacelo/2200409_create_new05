@@ -164,4 +164,14 @@ class MakesController extends Controller
         return redirect()->route('mypage');
     }
     
+    /**
+     * 詳細画面の表示
+     */
+    public function shousai($id)
+    {
+        $make = Make::find($id);
+
+        return view('shousai', compact('make'));
+    }
+    
 }
