@@ -51,4 +51,7 @@ class User extends Authenticatable
      public function favo_posts() {
         return $this->belongsToMany('App\Models\Make');
     }
+    
+    
+    
 }

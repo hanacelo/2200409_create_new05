@@ -9,7 +9,7 @@
                     <table class="table table-striped task-table">
                         <!-- テーブルヘッダ -->
                         <thead>
-                            <th>賛同一覧</th>
+                            <th>これまで賛同したキャンペーン</th>
                             <th>&nbsp;</th>
                         </thead>
                         <!-- テーブル本体 -->
@@ -28,6 +28,11 @@
                                     <td class="table-text">
                                         <div>{{ $favo_post->user->name }}</div>
                                     </td>
+                                    <!-- 詳細ボタン -->
+                                    <td>
+                                        <a href="{{ route('shousai', ['id'=>$favo_post->id]) }}" class="btn btn-primary">詳細</a>
+                                    </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
@@ -42,3 +47,5 @@
     <td class="table-text">
         <a href="{{ url('/') }}" type="submit" class="btn btn-danger">投稿ページへ</a>
     </td>
+    
+    @endsection

@@ -28,8 +28,8 @@
                                        <div>{{ $make->user->name }}</div>
                                     </td>
                                     <!-- 詳細ボタン -->
-                                    <td><a href="{{ route('shousai', ['id'=>$make->id]) }}" class="btn btn-primary">詳細</a></td>
-     				                <!-- お気に入りボタン -->
+                                    <td><a href="{{ url('/shousai', ['id'=>$make->id]) }}" class="btn btn-primary">詳細</a></td>
+     				                <!-- 賛同ボタン -->
      				                <td class="table-text">
                                     @if(Auth::check())
                                     	@if(Auth::id() != $make->user_id && $make->favo_user()->where('user_id',Auth::id())->exists() !== true)
@@ -52,3 +52,5 @@
             <td class="table-text">
                 <a href="{{ url('/') }}" type="submit" class="btn btn-danger">さらにキャンペーンを作る</a>
             </td>
+
+  @endsection

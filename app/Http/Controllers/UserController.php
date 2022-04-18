@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Make; //この行を上に追加
-use App\Models\User;//この行を上に追加
-use Auth;//この行を上に追加
-use Validator;//この行を上に追加
 
-
-class MypageController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,26 +13,11 @@ class MypageController extends Controller
      */
     public function index()
     {
-        // 全ての投稿を取得
-        $makes = Make::get();
-        
-        if (Auth::check()) {
-             //ログインユーザーのお気に入りを取得
-             $favo_posts = Auth::user()->favo_posts()->get();
-             
-              return view('mypage',[
-            'makes'=> $makes,
-            'favo_posts'=>$favo_posts
-            ]);
-            
-        }else{
-            
-            return view('mypage',[
-            'makes'=> $makes
-            ]);
-            
-        }
-       
+        $users = User::orderBy('id', 'name')->paginate(10);
+
+        return view('shousai', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -103,36 +83,21 @@ class MypageController extends Controller
      */
     public function destroy($id)
     {
-        
-    }
-
-
-    public function tomakes()
-    {
-        //表示させたいviewを指定させる
-        return redirect('/');
+        //
     }
     
-    /**
-     * 詳細画面の表示
-     */
-    public function shousai($id)
-    {
-        $make = Make::find($id);
-
-        return view('shousai', compact('make'));
-    }
-    
-    
-    //これで、どうにかusersテーブルから自分のアカウント情報だけを取りたい。もしくは全部取っておいてどっかで抽出するか
-    public function user($id)
+    public function favorites($id)
     {
         $user = User::find($id);
+        $favorites = $user->favorites()->paginate(10);
 
-        return view('ichiran', compact('user'));
+        $data = [
+            'user' => $user,
+            'name' => $names,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('shousai',  compact('make'));
     }
-    
-    
-    
-    
 }

@@ -21,6 +21,7 @@ class MakesController extends Controller
         // 全ての投稿を取得
         $makes = Make::get();
         
+        
         if (Auth::check()) {
              //ログインユーザーのお気に入りを取得
              $favo_posts = Auth::user()->favo_posts()->get();
@@ -37,6 +38,8 @@ class MakesController extends Controller
             ]);
             
         }
+        
+        
        
     }
 
@@ -101,10 +104,7 @@ class MakesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -113,11 +113,7 @@ class MakesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -127,8 +123,16 @@ class MakesController extends Controller
     public function destroy($id)
     {
         //
+        //削除
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+        //削除する記事
+        $make = Make::find($id);
+        $make->delete();
+        return redirect(url('mypage'))->with('success', 'ブログ記事を削除しました');
     }
     
+    //お気に入り処理
     public function favo($make_id)
     {
         //ログイン中のユーザーを取得
@@ -140,7 +144,7 @@ class MakesController extends Controller
         //リレーションの登録
         $make->favo_user()->attach($user);
         
-        return redirect('mypage');
+        return redirect('ichiran');
     }
     
     
@@ -171,7 +175,8 @@ class MakesController extends Controller
     {
         $make = Make::find($id);
 
-        return view('shousai', compact('make'));
+        return view('shousai', compact('make'))->with('make', $make);
     }
     
+
 }

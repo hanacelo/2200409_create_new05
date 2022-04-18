@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MakesController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ToppageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,14 +44,13 @@ Route::post('make/{make_id}', [MakesController::class, 'favo']);
 //favoの登録
 Route::post('mypage/{make_id}', [MakesController::class, 'favo']);
 
+
 //myページの表示
 Route::get('/mypage', [MypageController::class, 'index']);
 
 
-//詳細ボタン設定
-Route::get('/shousai/{id}', [MakesController::class, 'shousai'])->name('shousai');
+//topページの表示
+Route::get('top', [ToppageController::class, 'index'])->name('top');
 
-
-
-
-
+//詳細ボタン設定(mypage)
+Route::get('/shousai/{id}', [MypageController::class, 'shousai'])->name('shousai');
